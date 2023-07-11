@@ -9,7 +9,9 @@ const getImages = () =>
     `${BASE_URL}?key=${API_KEY}&image_type=photo&q=cat&orientation=horizontal&safesearch=true&q=cat`
   );
 
-getImages().then(console.log).catch(onFetchError);
+getImages()
+  .then(response => console.log(response.data))
+  .catch(onFetchError);
 
 function onFetchError(error) {
   Notiflix.Notify.failure(

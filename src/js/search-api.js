@@ -1,28 +1,30 @@
+'use strict';
 import axios from 'axios';
-import Notiflix from 'notiflix';
 
-const BASE_URL = `https://pixabay.com/api/`;
-const API_KEY = '38162173-e7189c612242127d8d754fc70';
+// const BASE_URL = `https://pixabay.com/api/`;
+// const API_KEY = '38162173-e7189c612242127d8d754fc70';
 
-const getImages = () =>
-  axios.get(
-    `${BASE_URL}?key=${API_KEY}&image_type=photo&q=cat&orientation=horizontal&safesearch=true&q=cat`
-  );
+export class GalleryAPI {
+  #API_KEY = '38162173-e7189c612242127d8d754fc70';
+  #BASE_URL = `https://pixabay.com/api/`;
+  page = 1;
+  q = null;
 
-getImages()
-  .then(response => console.log(response.data))
-  .catch(onFetchError);
-
-function onFetchError(error) {
-  Notiflix.Notify.failure(
-    'Oops! Something went wrong! Try reloading the page or select another cat breed!',
-    {
-      position: 'center-center',
-      timeout: 5000,
-      width: '400px',
-      fontSize: '24px',
-    }
-  );
+  fetchImages() {
+    return axios.get(`${this.#BASE_URL}`, {
+      params: {
+        q: this.q,
+        key: this.#API_KEY,
+        page: this.page,
+        image_type: 'photo',
+        orientation: 'horizontal',
+        per_page: 12,
+      },
+    });
+  }
 }
 
-export { getImages, onFetchError };
+// fetchImages()
+//   .then(response => console.log(response.data))
+//   .catch(console.warn);
+// console.log(galleryInstance);

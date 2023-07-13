@@ -7,3 +7,17 @@ button {
   background-color: #404040;
   color: #fff;
 }
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.photo-card {
+  width: 300px;
+}
+
+img {
+  width: 200px;
+}

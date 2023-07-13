@@ -23,8 +23,3 @@ export class GalleryAPI {
     });
   }
 }
-
-// fetchImages()
-//   .then(response => console.log(response.data))
-//   .catch(console.warn);
-// console.log(galleryInstance);

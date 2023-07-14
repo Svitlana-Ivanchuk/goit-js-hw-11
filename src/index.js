@@ -13,6 +13,11 @@ const galleryInstance = new GalleryAPI();
 
 btnLoadMore.style.display = 'none';
 
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionDelay: 250,
+  animationSlide: false,
+});
+
 // console.log(galleryInstance.fetchImages());
 
 function onSearchFormSubmit(evt) {
@@ -34,7 +39,7 @@ function onSearchFormSubmit(evt) {
         btnLoadMore.style.display = 'none';
         throw new Error();
       }
-      // onFetchSuccess(totalImages);
+      onFetchSuccess(totalImages);
       galleryList.innerHTML = createGalleryCards(arrayImages);
       btnLoadMore.style.display = 'block';
     })
@@ -43,7 +48,7 @@ function onSearchFormSubmit(evt) {
 
 function onBtnLoadMoreClick() {
   galleryInstance.page += 1;
-
+  lightbox.refresh();
   galleryInstance.fetchImages().then(data => {
     if (data.data.total === data.data.totalHits) {
       btnLoadMore.style.display = 'none';
@@ -100,14 +105,6 @@ function onFetchInfo() {
     }
   );
 }
-
-const lightbox = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
-  captionPosition: 'bottom',
-  captionDelay: 250,
-  animationSlide: false,
-  history: false,
-});
 
 function createGalleryCards(arr) {
   return arr

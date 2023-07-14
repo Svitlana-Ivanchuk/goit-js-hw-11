@@ -19,7 +19,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
 
 // console.log(galleryInstance.fetchImages());
 
-async function onSearchFormSubmit(evt) {
+function onSearchFormSubmit(evt) {
   evt.preventDefault();
   galleryList.innerHTML = '';
   // console.log(evt.target.firstElementChild.value);
@@ -32,12 +32,15 @@ async function onSearchFormSubmit(evt) {
     .then(data => {
       const arrayImages = data.data.hits;
       const totalImages = data.data.total;
+      // console.log(arrayImages.length);
+      // console.log(totalImages);
       if (!arrayImages.length) {
         btnLoadMore.style.display = 'none';
         throw new Error();
       }
       onFetchSuccess(totalImages);
       galleryList.innerHTML = createGalleryCards(arrayImages);
+      lightbox.refresh();
       btnLoadMore.style.display = 'block';
     })
     .catch(onFetchError);
@@ -55,6 +58,7 @@ function onBtnLoadMoreClick() {
       'beforeend',
       createGalleryCards(data.data.hits)
     );
+    lightbox.refresh();
   });
 }
 

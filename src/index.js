@@ -7,7 +7,6 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const searchFormEl = document.querySelector('.search-form');
 const galleryList = document.querySelector('.gallery');
 const btnLoadMore = document.querySelector('.load-more');
-const photoCard = document.querySelector('.photo-card');
 
 const galleryInstance = new GalleryAPI();
 
@@ -20,7 +19,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
 
 // console.log(galleryInstance.fetchImages());
 
-function onSearchFormSubmit(evt) {
+async function onSearchFormSubmit(evt) {
   evt.preventDefault();
   galleryList.innerHTML = '';
   // console.log(evt.target.firstElementChild.value);
@@ -33,8 +32,6 @@ function onSearchFormSubmit(evt) {
     .then(data => {
       const arrayImages = data.data.hits;
       const totalImages = data.data.total;
-      // console.log(arrayImages.length);
-      // console.log(totalImages);
       if (!arrayImages.length) {
         btnLoadMore.style.display = 'none';
         throw new Error();

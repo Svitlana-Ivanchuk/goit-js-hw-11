@@ -10,8 +10,8 @@ export class GalleryAPI {
   page = 1;
   q = null;
 
-  fetchImages() {
-    return axios.get(`${this.#BASE_URL}`, {
+  async fetchImages() {
+    return await axios.get(`${this.#BASE_URL}`, {
       params: {
         q: this.q,
         key: this.#API_KEY,

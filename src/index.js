@@ -1,10 +1,8 @@
 'use strict';
 import { GalleryAPI } from './js/search-api';
 import Notiflix from 'notiflix';
-// import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
-
 import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const searchFormEl = document.querySelector('.search-form');
 const galleryList = document.querySelector('.gallery');
@@ -15,7 +13,7 @@ const galleryInstance = new GalleryAPI();
 
 btnLoadMore.style.display = 'none';
 
-console.log(galleryInstance.fetchImages());
+// console.log(galleryInstance.fetchImages());
 
 function onSearchFormSubmit(evt) {
   evt.preventDefault();

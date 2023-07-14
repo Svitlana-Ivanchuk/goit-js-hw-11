@@ -18,7 +18,7 @@ export class GalleryAPI {
         page: this.page,
         image_type: 'photo',
         orientation: 'horizontal',
-        per_page: 12,
+        per_page: 30,
       },
     });
   }

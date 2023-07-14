@@ -1,8 +1,10 @@
 'use strict';
 import { GalleryAPI } from './js/search-api';
 import Notiflix from 'notiflix';
-import SimpleLightbox from 'simplelightbox';
+// import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+
+import SimpleLightbox from 'simplelightbox';
 
 const searchFormEl = document.querySelector('.search-form');
 const galleryList = document.querySelector('.gallery');
@@ -101,8 +103,13 @@ function onFetchInfo() {
   );
 }
 
-let lightbox = new SimpleLightbox('.photo-card a');
-lightbox.next();
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionPosition: 'bottom',
+  captionDelay: 250,
+  animationSlide: false,
+  history: false,
+});
 
 function createGalleryCards(arr) {
   return arr
